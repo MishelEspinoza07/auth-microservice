@@ -10,18 +10,17 @@ function App() {
   const [mode, setMode] = useState("center");
 
   return (
-    <div className="background-full">
-      <div className="app-container">
-        {/* <ModeSelector mode={mode} setMode={setMode} /> */}
-        {/* <Login mode={mode} /> */}
-        <BrowserRouter>
-          <Routes>
-            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
-            <Route path="/reset-password" element={<ResetPasswordPage />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </div>
+    <>
+      {/* <ModeSelector mode={mode} setMode={setMode} /> */}
+      {/* <Login mode={mode} /> */}
+      <BrowserRouter>
+        <Routes>
+          <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
