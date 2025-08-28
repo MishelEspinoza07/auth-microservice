@@ -16,7 +16,6 @@ const signInSchema = object({
 
 type SignInFormData = InferType<typeof signInSchema>;
 
-
 export default function SignInForm() {
   const [showForgot, setShowForgot] = useState(false);
   const navigate = useNavigate();
@@ -27,7 +26,6 @@ export default function SignInForm() {
     setIsSubmitting(true);
     try {
       await signInSchema.validate(values, { abortEarly: false });
-      // Si la validación es exitosa, redirige a /success
       navigate("/success");
       console.log("Login:", values);
     } catch (error) {
@@ -65,26 +63,15 @@ export default function SignInForm() {
       }}
     >
       <h1 style={{ fontWeight: "bold", margin: 0 }}>Sign in</h1>
-
       <SocialLoginButtons />
-
       <Text style={{ fontSize: 12 }}>or use your account</Text>
-
-      <Form
-        form={form}
-        layout="vertical"
-        onFinish={onFinish}
-        style={{ width: "100%", marginTop: 16 }}
-      >
+      <Form form={form} layout="vertical" onFinish={onFinish} style={{ width: "100%", marginTop: 16 }}>
         <Form.Item name="email">
           <Input placeholder="Email" type="email" size="large" />
         </Form.Item>
-
         <Form.Item name="password">
           <Input.Password placeholder="Password" size="large" />
         </Form.Item>
-
-
         <a
           href="#"
           style={{
@@ -95,33 +82,41 @@ export default function SignInForm() {
             display: "block",
             transition: "color 0.3s ease",
           }}
-          onClick={e => {
+          onClick={(e) => {
             e.preventDefault();
             setShowForgot(true);
           }}
-          onMouseEnter={e => {
+          onMouseEnter={(e) => {
             e.currentTarget.style.color = "#1d4ed8";
           }}
-          onMouseLeave={e => {
+          onMouseLeave={(e) => {
             e.currentTarget.style.color = "#2563eb";
           }}
         >
           Forgot your password?
         </a>
-
         <PopUpForgotPassword open={showForgot} onClose={() => setShowForgot(false)} />
-
-        <PrimaryButton
-          htmlType="submit"
-          disabled={isSubmitting}
-          style={{
-            opacity: isSubmitting ? 0.7 : 1,
-            cursor: isSubmitting ? "not-allowed" : "pointer",
-          }}
-        >
+        <PrimaryButton htmlType="submit" disabled={isSubmitting} style={{ opacity: isSubmitting ? 0.7 : 1, cursor: isSubmitting ? "not-allowed" : "pointer" }}>
           {isSubmitting ? "Signing In..." : "Sign In"}
         </PrimaryButton>
       </Form>
+      <button
+        type="button"
+        onClick={() => navigate("/signup")}
+        style={{
+          background: "#fff",
+          color: "#2563eb",
+          border: "1px solid #2563eb",
+          borderRadius: 6,
+          padding: "8px 20px",
+          fontWeight: 500,
+          cursor: isSubmitting ? "not-allowed" : "pointer",
+          marginTop: 12,
+        }}
+        disabled={isSubmitting}
+      >
+        SIGN UP
+      </button>
     </div>
   );
 }
