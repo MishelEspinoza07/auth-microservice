@@ -16,7 +16,7 @@ export default function ResetPasswordForm() {
 
       message.success("Contraseña guardada");
       form.resetFields();
-      navigate("/reset-confirmation"); /
+      navigate("/reset-confirmation"); 
     } catch (err) {
       message.error("Ocurrió un error. Intenta nuevamente.");
     } finally {
