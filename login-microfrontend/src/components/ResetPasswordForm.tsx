@@ -12,12 +12,11 @@ export default function ResetPasswordForm() {
   const onFinish = async (values: { newPassword: string; confirmPassword: string }) => {
     setLoading(true);
     try {
-      // Aquí harías la llamada real al backend (ej: api.resetPassword(...))
-      await new Promise((r) => setTimeout(r, 700)); // simulación
+      await new Promise((r) => setTimeout(r, 700)); 
 
       message.success("Contraseña guardada");
       form.resetFields();
-      navigate("/reset-confirmation"); // redirige a la pantalla de confirmación
+      navigate("/reset-confirmation"); /
     } catch (err) {
       message.error("Ocurrió un error. Intenta nuevamente.");
     } finally {
