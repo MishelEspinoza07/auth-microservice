@@ -5,6 +5,7 @@ import SuccessPage from "./pages/SuccessPage";
 import ResetPassword from "./pages/ResetPassword";
 import ResetConfirmationPage from "./pages/ResetConfirmationPage";
 import SignUp from "./pages/SignUp";
+import ChangePassword from "./pages/ChangePassword";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/reset-confirmation" element={<ResetConfirmationPage />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/changepassword" element={<ChangePassword />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
