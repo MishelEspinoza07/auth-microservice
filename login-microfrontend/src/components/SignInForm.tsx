@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { loginUser } from "../api/loginUser";
 import PopUpForgotPassword from "./PopUpForgotPassword";
 import { useNavigate } from "react-router-dom";
 import { object, string } from "yup";
@@ -26,8 +27,9 @@ export default function SignInForm() {
     setIsSubmitting(true);
     try {
       await signInSchema.validate(values, { abortEarly: false });
+      const data = await loginUser({ email: values.email, password: values.password });
       navigate("/success");
-      console.log("Login:", values);
+      console.log("Login success:", data);
     } catch (error) {
       if (error && typeof error === "object" && "inner" in error) {
         const validationError = error as {
@@ -43,6 +45,11 @@ export default function SignInForm() {
             errors,
           }))
         );
+      } else {
+        // Mostrar error de login
+        form.setFields([
+          { name: "email", errors: ["Credenciales inválidas"] },
+        ]);
       }
     } finally {
       setIsSubmitting(false);
