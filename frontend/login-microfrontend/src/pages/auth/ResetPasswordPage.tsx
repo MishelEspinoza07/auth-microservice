@@ -1,38 +1,52 @@
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import AuthLayout from "./AuthLayout";
 import SocialLogin from "../../components/SocialLogin";
-import upbLogo from "/upblogo.jpeg";
-import figuraIzq from "../../assets/fotito.png";
-import figuraDer from "../../assets/fotito.png";
+import toast from "react-hot-toast"; 
 
-export default function ResetPasswordPage({ position = "center" }) {
+export default function ResetPassword() {
+
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
+
+  const handleReset = async () => {
+
+    if (newPassword !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    toast.success("Password reset successful!");
+    navigate("/login");
+  }
+
   return (
-    <div className="login-background">
-          <div className="login-layout two-columns">
-            {position == "left" && (
-              <div className="figure-col">
-                <img src={figuraIzq} alt="Figura izquierda" />
-              </div>
-            )}
-    
-            <div className="form-col">
-              <img src={upbLogo} alt="UPB Logo" className="logo" />
-              <h2>Reset Password</h2>
-    
-              <form className="login-form">
-                <input type="password" placeholder="Password" required />
-                <input type="password" placeholder="Confirm Password" required />
-                <button type="submit" className="login-btn">
-                  Login
-                </button>
-              </form>
-              <SocialLogin />
-            </div>
-    
-            {position == "right" && (
-              <div className="figure-col">
-                <img src={figuraDer} alt="Figura derecha" />
-              </div>
-            )}
-          </div>
-        </div>
-  )
+  <AuthLayout position="left">
+    <h2>Reset Password</h2>
+
+    <form className="login-form" onSubmit={(e) => { e.preventDefault(); handleReset(); }}>
+      <input
+        type="password"
+        placeholder="New password"
+        value={newPassword}
+        onChange={e => setNewPassword(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Confirm password"
+        value={confirmPassword}
+        onChange={e => setConfirmPassword(e.target.value)}
+        required
+      />
+      <button type="submit" className="login-btn">
+        Reset Password
+      </button>
+    </form>
+
+    <SocialLogin />
+  </AuthLayout>
+);
+
 }

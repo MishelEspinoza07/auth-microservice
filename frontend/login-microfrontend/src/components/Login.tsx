@@ -1,4 +1,8 @@
-import { useState } from "react";
+import LoginForm from "./LoginForm";
+import SocialLogin from "./SocialLogin";
+import upbLogo from "/upblogo.jpeg";
+import figuraIzq from "/fotito.png";
+import figuraDer from "/fotito.png";
 
 function SignInForm() {
   return (
