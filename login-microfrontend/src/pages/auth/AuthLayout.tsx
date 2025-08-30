@@ -5,10 +5,14 @@ interface AuthLayoutProps {
   children: React.ReactNode;
 }
 
-export default function AuthLayout({ position = "center", children }: AuthLayoutProps) {
+export default function AuthLayout({
+  position = "center",
+  children,
+}: AuthLayoutProps) {
   const upbLogo = "/upblogo.jpeg";
   const figura = "/fotito.png";
-  const layoutClass = position === "center" ? "login-layout center" : "login-layout two-columns";
+  const layoutClass =
+    position === "center" ? "login-layout center" : "login-layout two-columns";
 
   return (
     <div className="background-full">
