@@ -32,7 +32,6 @@ export default function SignUpForm() {
     } else {
       setPasswordError("");
     }
-    // Clear API error when user starts typing
     if (apiError) {
       setApiError("");
     }
